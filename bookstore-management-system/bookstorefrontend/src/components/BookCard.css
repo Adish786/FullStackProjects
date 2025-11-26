@@ -1,0 +1,421 @@
+/* BookCard.css */
+.book-card-container {
+  width: 100%;
+  height: 100%;
+}
+
+.book-card {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  cursor: pointer;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.book-card:hover {
+  transform: translateY(-6px) scale(1.02) !important;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12) !important;
+  border-color: #2E7D32 !important;
+}
+
+.book-card:hover .book-image {
+  transform: scale(1.05) !important;
+}
+
+.book-card:hover .action-buttons {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Image Section */
+.book-image-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.book-image {
+  object-fit: cover !important;
+  transition: transform 0.5s ease !important;
+  background: linear-gradient(45deg, #f5f5f5 30%, #e0e0e0 90%) !important;
+  width: 100% !important;
+}
+
+/* Action Buttons */
+.action-buttons {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.action-button {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.action-button:hover {
+  background-color: #2E7D32 !important;
+  color: white !important;
+}
+
+.action-button-favorite {
+  color: #d32f2f !important;
+}
+
+.action-button-favorite:hover {
+  background-color: #d32f2f !important;
+  color: white !important;
+}
+
+.action-button-share:hover {
+  background-color: #0288d1 !important;
+  color: white !important;
+}
+
+/* Stock Badge */
+.stock-badge .MuiBadge-badge {
+  font-size: 0.7rem !important;
+  font-weight: bold !important;
+  border-radius: 12px !important;
+  padding: 0 8px !important;
+  height: 24px !important;
+}
+
+/* Rating Overlay */
+.rating-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 12px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  backdrop-filter: blur(10px);
+}
+
+.rating-star {
+  font-size: 16px !important;
+  color: gold !important;
+}
+
+/* Content Section */
+.book-content {
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 16px !important;
+}
+
+.book-content:last-child {
+  padding-bottom: 16px !important;
+}
+
+.book-title {
+  font-weight: bold !important;
+  line-height: 1.3 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  min-height: 2.6em !important;
+  font-size: 1rem !important;
+}
+
+.book-author {
+  font-style: italic !important;
+  font-size: 0.8rem !important;
+  margin-bottom: 8px !important;
+}
+
+.genre-chip {
+  font-weight: bold !important;
+  border-radius: 8px !important;
+  font-size: 0.7rem !important;
+  height: 28px !important;
+  margin-bottom: 12px !important;
+}
+
+.book-description {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  line-height: 1.4 !important;
+  flex-grow: 1 !important;
+  font-size: 0.8rem !important;
+  margin-bottom: 12px !important;
+}
+
+/* Price Section */
+.price-section {
+  margin-top: auto !important;
+}
+
+.price-stock-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 12px !important;
+}
+
+.book-price {
+  background: linear-gradient(45deg, #2E7D32, #4CAF50) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+}
+
+.stock-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.stock-text {
+  font-size: 0.75rem !important;
+}
+
+/* Auth Alert */
+.auth-alert {
+  border-radius: 12px !important;
+  margin-bottom: 8px !important;
+}
+
+.auth-alert .MuiAlert-message {
+  font-size: 0.75rem !important;
+  padding: 4px 0 !important;
+}
+
+/* Action Buttons */
+.action-buttons-row {
+  display: flex !important;
+  gap: 8px !important;
+  flex-direction: row !important;
+}
+
+.cart-button {
+  flex: 1 !important;
+  border-radius: 12px !important;
+  text-transform: none !important;
+  font-weight: bold !important;
+  min-height: 42px !important;
+  font-size: 0.8rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.cart-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4) !important;
+}
+
+.buy-button {
+  flex: 1 !important;
+  border-radius: 12px !important;
+  text-transform: none !important;
+  font-weight: bold !important;
+  min-height: 42px !important;
+  font-size: 0.8rem !important;
+  border-width: 2px !important;
+  transition: all 0.3s ease !important;
+}
+
+.buy-button:hover {
+  transform: translateY(-1px) !important;
+  border-width: 2px !important;
+  box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3) !important;
+}
+
+.out-of-stock-button {
+  border-radius: 12px !important;
+  min-height: 42px !important;
+  font-size: 0.8rem !important;
+}
+
+/* Quick View Dialog */
+.quick-view-dialog .MuiDialog-paper {
+  border-radius: 24px !important;
+}
+
+.dialog-title {
+  padding-bottom: 8px !important;
+}
+
+.dialog-image {
+  border-radius: 16px !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 300px !important;
+  object-fit: cover !important;
+}
+
+.dialog-actions {
+  padding: 24px !important;
+}
+
+/* Mobile Styles */
+@media (max-width: 899px) {
+  .book-card {
+    max-width: 100% !important;
+  }
+  
+  .book-card:hover {
+    transform: none !important;
+  }
+  
+  .book-card:hover .book-image {
+    transform: none !important;
+  }
+  
+  .action-buttons {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    flex-direction: row !important;
+  }
+  
+  .action-button {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .book-content {
+    padding: 12px !important;
+  }
+  
+  .book-content:last-child {
+    padding-bottom: 12px !important;
+  }
+  
+  .book-title {
+    font-size: 0.9rem !important;
+    min-height: 2.4em !important;
+  }
+  
+  .book-author {
+    font-size: 0.75rem !important;
+  }
+  
+  .genre-chip {
+    font-size: 0.6rem !important;
+    height: 24px !important;
+  }
+  
+  .book-description {
+    font-size: 0.75rem !important;
+  }
+  
+  .book-price {
+    font-size: 1rem !important;
+  }
+  
+  .stock-badge .MuiBadge-badge {
+    font-size: 0.6rem !important;
+    height: 20px !important;
+  }
+  
+  .rating-overlay {
+    padding: 3px 6px;
+  }
+  
+  .rating-star {
+    font-size: 14px !important;
+  }
+  
+  .cart-button,
+  .buy-button,
+  .out-of-stock-button {
+    min-height: 36px !important;
+    font-size: 0.75rem !important;
+    padding: 6px 12px !important;
+  }
+  
+  .buy-button {
+    border-width: 1px !important;
+  }
+  
+  .buy-button:hover {
+    border-width: 1px !important;
+  }
+  
+  .action-buttons-row {
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .book-image {
+    height: 200px !important;
+  }
+  
+  .quick-view-dialog .MuiDialog-paper {
+    margin: 16px !important;
+    width: calc(100% - 32px) !important;
+  }
+  
+  .book-content {
+    padding: 8px !important;
+  }
+}
+
+@media (max-width: 399px) {
+  .book-image {
+    height: 180px !important;
+  }
+  
+  .action-buttons {
+    gap: 4px;
+  }
+  
+  .action-button {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .book-image {
+    height: 220px !important;
+  }
+}
+
+/* Prevent hover effects on touch devices */
+@media (hover: none) {
+  .book-card:hover {
+    transform: none !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .book-card:hover .book-image {
+    transform: none !important;
+  }
+  
+  .book-card:hover .action-buttons {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  .cart-button:hover,
+  .buy-button:hover {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,636 @@
+/* App.css */
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* App Bar Styles */
+.app-bar {
+  background: linear-gradient(135deg, #1976d2 0%, #1a237e 100%) !important;
+  box-shadow: 0 2px 20px rgba(25, 118, 210, 0.3) !important;
+}
+
+.toolbar {
+  padding: 0 16px !important;
+  min-height: 70px !important;
+}
+
+.menu-button {
+  margin-right: 16px;
+}
+
+.app-logo {
+  margin-right: 12px;
+  font-size: 2rem !important;
+}
+
+.app-title {
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
+  background: linear-gradient(45deg, #ffffff, #e3f2fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.desktop-nav {
+  margin-left: 40px;
+  flex: 1;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Desktop Tabs */
+.desktop-tabs {
+  min-height: 64px;
+}
+
+.tab-item {
+  min-width: 160px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  font-size: 0.95rem !important;
+  padding: 12px 24px !important;
+}
+
+.tab-item .MuiTab-iconWrapper {
+  margin-bottom: 4px !important;
+}
+
+/* Mobile Drawer */
+.mobile-drawer .MuiDrawer-paper {
+  width: 280px;
+  background: linear-gradient(135deg, #1a237e 0%, #1976d2 100%);
+  color: white;
+}
+
+.drawer-header {
+  padding: 24px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-title {
+  font-weight: 600 !important;
+  color: white;
+}
+
+.drawer-list {
+  padding: 16px 0;
+}
+
+.drawer-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin: 4px 16px;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.drawer-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+.drawer-item.active {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+  backdrop-filter: blur(10px);
+}
+
+.drawer-icon {
+  color: inherit !important;
+  min-width: 48px !important;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.content-container {
+  padding: 24px;
+  min-height: calc(100vh - 70px);
+}
+
+.content-container.mobile {
+  padding: 16px;
+  min-height: calc(100vh - 130px);
+  padding-bottom: 80px;
+}
+
+/* Dashboard Styles */
+.dashboard-container {
+  padding: 20px 0;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, rgba(25, 118, 210, 0.1) 0%, rgba(26, 35, 126, 0.1) 100%);
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.dashboard-title {
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #1976d2, #1a237e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px !important;
+}
+
+.dashboard-subtitle {
+  color: #666;
+  font-weight: 400 !important;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card.primary {
+  border-color: #1976d2;
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+}
+
+.dashboard-card.secondary {
+  border-color: #dc004e;
+  background: linear-gradient(135deg, #fce4ec, #ffffff);
+}
+
+.dashboard-card.tertiary {
+  border-color: #2e7d32;
+  background: linear-gradient(135deg, #e8f5e8, #ffffff);
+}
+
+.dashboard-card.accent {
+  border-color: #ed6c02;
+  background: linear-gradient(135deg, #fff3e0, #ffffff);
+}
+
+.dashboard-card.primary:hover {
+  border-color: #1565c0;
+  background: linear-gradient(135deg, #bbdefb, #e3f2fd);
+}
+
+.dashboard-card.secondary:hover {
+  border-color: #c2185b;
+  background: linear-gradient(135deg, #f8bbd0, #fce4ec);
+}
+
+.dashboard-card.tertiary:hover {
+  border-color: #1b5e20;
+  background: linear-gradient(135deg, #c8e6c9, #e8f5e8);
+}
+
+.dashboard-card.accent:hover {
+  border-color: #e65100;
+  background: linear-gradient(135deg, #ffe0b2, #fff3e0);
+}
+
+.dashboard-icon {
+  font-size: 3.5rem !important;
+  margin-bottom: 16px !important;
+}
+
+.dashboard-card.primary .dashboard-icon {
+  color: #1976d2;
+}
+
+.dashboard-card.secondary .dashboard-icon {
+  color: #dc004e;
+}
+
+.dashboard-card.tertiary .dashboard-icon {
+  color: #2e7d32;
+}
+
+.dashboard-card.accent .dashboard-icon {
+  color: #ed6c02;
+}
+
+.dashboard-card-title {
+  font-weight: 600 !important;
+  margin-bottom: 12px !important;
+  color: #333;
+}
+
+.dashboard-card-description {
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Mobile Placeholder */
+.mobile-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  height: 100%;
+  color: #666;
+}
+
+.placeholder-icon {
+  font-size: 4rem !important;
+  color: #ccc;
+  margin-bottom: 20px !important;
+}
+
+.placeholder-title {
+  color: #666;
+  margin-bottom: 12px !important;
+  font-weight: 600;
+}
+
+.placeholder-description {
+  color: #999;
+  line-height: 1.5;
+}
+
+/* Batch Management Container */
+.batch-management-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.batch-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.batch-management-title {
+  font-weight: 700 !important;
+  color: #1a237e;
+  margin-bottom: 16px !important;
+}
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-top: 1px solid #e0e0e0;
+}
+
+.bottom-navigation {
+  background: white;
+  height: 70px;
+}
+
+.bottom-nav-item {
+  min-width: auto !important;
+  padding: 8px 12px !important;
+}
+
+.bottom-nav-item .MuiBottomNavigationAction-label {
+  font-size: 0.75rem !important;
+  font-weight: 500;
+}
+
+.bottom-nav-item.Mui-selected {
+  color: #1976d2 !important;
+}
+
+/* Mobile FAB */
+.mobile-fab {
+  position: fixed !important;
+  bottom: 90px;
+  right: 24px;
+  z-index: 1000;
+  background: linear-gradient(135deg, #1976d2, #1a237e) !important;
+  color: white !important;
+  width: 60px !important;
+  height: 60px !important;
+  box-shadow: 0 4px 20px rgba(25, 118, 210, 0.3) !important;
+}
+
+.mobile-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(25, 118, 210, 0.4) !important;
+}
+
+/* Mobile Dialogs */
+.mobile-dialog .MuiDialog-paper {
+  border-radius: 16px;
+  margin: 0;
+}
+
+.mobile-dialog .MuiDialog-paperFullScreen {
+  border-radius: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .batch-management-header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 1.3rem !important;
+  }
+  
+  .toolbar {
+    min-height: 60px !important;
+    padding: 0 12px !important;
+  }
+  
+  .content-container {
+    padding: 16px;
+  }
+  
+  .dashboard-header {
+    padding: 30px 16px;
+    margin-bottom: 32px;
+  }
+  
+  .dashboard-title {
+    font-size: 2rem !important;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .dashboard-card {
+    padding: 24px;
+    min-height: 160px;
+  }
+  
+  .dashboard-icon {
+    font-size: 2.8rem !important;
+  }
+  
+  .mobile-fab {
+    bottom: 80px;
+    right: 16px;
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 1.1rem !important;
+  }
+  
+  .toolbar {
+    min-height: 56px !important;
+    padding: 0 8px !important;
+  }
+  
+  .content-container.mobile {
+    padding: 12px;
+    padding-bottom: 70px;
+  }
+  
+  .dashboard-header {
+    padding: 24px 12px;
+    margin-bottom: 24px;
+    border-radius: 16px;
+  }
+  
+  .dashboard-title {
+    font-size: 1.6rem !important;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 0.9rem !important;
+  }
+  
+  .dashboard-card {
+    padding: 20px;
+    min-height: 140px;
+    border-radius: 16px;
+  }
+  
+  .dashboard-icon {
+    font-size: 2.5rem !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .dashboard-card-title {
+    font-size: 1.2rem !important;
+  }
+  
+  .mobile-placeholder {
+    padding: 40px 16px;
+  }
+  
+  .placeholder-icon {
+    font-size: 3rem !important;
+  }
+  
+  .mobile-fab {
+    bottom: 70px;
+    right: 12px;
+    width: 52px !important;
+    height: 52px !important;
+  }
+  
+  .bottom-navigation {
+    height: 60px;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Loading States */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Focus Styles for Accessibility */
+.dashboard-card:focus,
+.tab-item:focus,
+.drawer-item:focus,
+.mobile-fab:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .app-bar {
+    background: #000 !important;
+  }
+  
+  .dashboard-card {
+    border-width: 3px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-card,
+  .mobile-fab,
+  .drawer-item {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+
+/* User Section Styles */
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.user-button {
+  padding: 8px;
+}
+
+.user-avatar {
+  background: linear-gradient(135deg, #1976d2, #1a237e);
+  font-weight: 600;
+}
+
+.user-menu .MuiMenu-paper {
+  border-radius: 12px;
+  margin-top: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.user-menu .MuiMenuItem-root {
+  padding: 12px 16px;
+  font-size: 0.9rem;
+}
+
+.menu-icon {
+  margin-right: 12px;
+  color: #666;
+}
+
+/* Auth-specific styles */
+.auth-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Update existing styles for auth flow */
+.app-container {
+  transition: all 0.3s ease;
+}
+
+/* Loading states */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}

@@ -1,0 +1,291 @@
+/* Navbar.css */
+.navbar-container {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-appbar {
+  background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  width: 100%;
+}
+
+.navbar-toolbar {
+  min-height: 70px;
+  padding: 0 16px !important;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Logo/Brand Styles */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin-right: 20px;
+  flex-shrink: 0;
+  min-width: fit-content;
+}
+
+.navbar-logo-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+.navbar-logo-text {
+  font-weight: bold !important;
+  background: linear-gradient(45deg, #ffffff, #e8f5e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+/* Desktop Navigation */
+.navbar-desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-grow: 1;
+  justify-content: center;
+  margin: 0 32px;
+}
+
+.navbar-desktop-button {
+  border-radius: 16px !important;
+  padding: 8px 24px !important;
+  text-transform: none !important;
+  font-weight: normal;
+  font-size: 0.95rem !important;
+  transition: all 0.3s ease !important;
+  min-width: auto !important;
+  border: 1px solid transparent !important;
+}
+
+.navbar-desktop-button.active {
+  font-weight: bold !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+}
+
+.navbar-desktop-button:hover {
+  transform: translateY(-1px);
+  background-color: rgba(255,255,255,0.1) !important;
+}
+
+.navbar-desktop-button.active:hover {
+  background-color: rgba(46, 125, 50, 0.8) !important;
+}
+
+/* User Actions */
+.navbar-user-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.navbar-icon-button {
+  transition: all 0.3s ease !important;
+}
+
+.navbar-icon-button:hover {
+  transform: scale(1.1);
+  background-color: rgba(255,255,255,0.1) !important;
+}
+
+.navbar-avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #FF8F00 !important;
+  font-size: 0.9rem !important;
+  font-weight: bold !important;
+  border: 2px solid rgba(255,255,255,0.3) !important;
+}
+
+/* Auth Buttons */
+.navbar-auth-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.navbar-login-button {
+  border-radius: 16px !important;
+  padding: 8px 20px !important;
+  text-transform: none !important;
+  font-weight: bold !important;
+  font-size: 0.9rem !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+}
+
+.navbar-register-button {
+  border-radius: 16px !important;
+  padding: 8px 20px !important;
+  text-transform: none !important;
+  font-weight: bold !important;
+  font-size: 0.9rem !important;
+  box-shadow: 0 2px 8px rgba(255,111,0,0.3) !important;
+}
+
+.navbar-register-button:hover {
+  box-shadow: 0 4px 12px rgba(255,111,0,0.4) !important;
+  transform: translateY(-1px);
+}
+
+/* Mobile Menu */
+.navbar-mobile-drawer .MuiDrawer-paper {
+  width: 280px;
+  background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%) !important;
+  color: white;
+}
+
+.navbar-user-info {
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 8px;
+}
+
+.navbar-mobile-avatar {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 8px auto !important;
+  background-color: #FF8F00 !important;
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+}
+
+.navbar-mobile-list-item {
+  border-radius: 8px;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.navbar-mobile-list-item.active {
+  background-color: rgba(255,255,255,0.2) !important;
+}
+
+.navbar-mobile-list-item:hover {
+  background-color: rgba(255,255,255,0.1) !important;
+  transform: translateX(4px);
+}
+
+.navbar-mobile-list-icon {
+  color: white !important;
+  min-width: 40px !important;
+}
+
+.navbar-mobile-logout {
+  color: white !important;
+  border-color: rgba(255,255,255,0.5) !important;
+  border-radius: 16px !important;
+  padding: 12px !important;
+  text-transform: none !important;
+  font-weight: bold !important;
+  font-size: 0.95rem !important;
+}
+
+.navbar-mobile-logout:hover {
+  border-color: white !important;
+  background-color: rgba(255,255,255,0.1) !important;
+}
+
+/* Profile Menu */
+.navbar-profile-menu {
+  margin-top: 12px !important;
+  border-radius: 16px !important;
+  min-width: 220px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+}
+
+.navbar-profile-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.navbar-profile-menu-item {
+  padding: 14px 16px !important;
+  font-size: 0.9rem !important;
+}
+
+.navbar-profile-menu-icon {
+  min-width: 40px !important;
+}
+
+.navbar-logout-menu-item {
+  color: #d32f2f !important;
+  padding: 14px 16px !important;
+  font-size: 0.9rem !important;
+}
+
+.navbar-logout-menu-item:hover {
+  background-color: #d32f2f !important;
+  color: white !important;
+}
+
+/* Responsive Design */
+@media (max-width: 899px) {
+  .navbar-toolbar {
+    min-height: 64px;
+    padding: 0 12px !important;
+  }
+  
+  .navbar-desktop-nav {
+    display: none !important;
+  }
+  
+  .navbar-user-actions {
+    display: none !important;
+  }
+  
+  .navbar-logo-text {
+    display: none !important;
+  }
+  
+  .navbar-brand {
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 599px) {
+  .navbar-toolbar {
+    padding: 0 8px !important;
+  }
+  
+  .navbar-mobile-drawer .MuiDrawer-paper {
+    width: 260px;
+  }
+}
+
+@media (min-width: 900px) {
+  .navbar-mobile-menu-button {
+    display: none !important;
+  }
+}
+
+@media (max-width: 359px) {
+  .navbar-brand {
+    gap: 8px;
+  }
+  
+  .navbar-logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+}

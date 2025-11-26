@@ -1,0 +1,431 @@
+/* BookList.css */
+.book-list-container {
+  margin-top: 16px !important;
+  margin-bottom: 32px !important;
+  min-height: 100vh !important;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Header Section */
+.book-list-header {
+  text-align: center !important;
+  margin-bottom: 32px !important;
+  padding-top: 32px !important;
+}
+
+.header-icon {
+  font-size: 60px !important;
+  color: #2E7D32 !important;
+  margin-bottom: 16px !important;
+}
+
+.header-title {
+  font-weight: bold !important;
+  background: linear-gradient(45deg, #2E7D32, #4CAF50) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
+  margin-bottom: 16px !important;
+}
+
+.header-subtitle {
+  margin-bottom: 24px !important;
+  max-width: 600px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Stats & Demo Toggle */
+.stats-section {
+  margin-bottom: 24px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+}
+
+.stats-chips {
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+
+/* Search and Filter Section */
+.search-filter-card {
+  margin-bottom: 32px !important;
+  padding: 24px !important;
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  width: 100% !important;
+}
+
+.search-field {
+  width: 100% !important;
+}
+
+.search-field .MuiOutlinedInput-root {
+  border-radius: 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.search-field .MuiOutlinedInput-root:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+.search-field .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 2px 12px rgba(46, 125, 50, 0.2) !important;
+}
+
+.filter-control {
+  width: 100% !important;
+}
+
+.clear-filters-button {
+  border-radius: 16px !important;
+  padding: 8px 16px !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+}
+
+.clear-filters-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+/* Error Alert */
+.error-alert {
+  margin-bottom: 24px !important;
+  border-radius: 16px !important;
+  border: 1px solid !important;
+  border-color: #ff9800 !important;
+}
+
+/* Loading State */
+.loading-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: 400px !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.loading-text {
+  color: #666 !important;
+}
+
+/* Books Grid */
+.books-grid {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.books-grid-container {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.book-grid-item {
+  padding: 12px !important;
+  width: 100% !important;
+}
+
+/* No Books Found */
+.no-books-card {
+  text-align: center !important;
+  padding: 48px !important;
+  margin: 32px 0 !important;
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.no-books-title {
+  color: #666 !important;
+  margin-bottom: 16px !important;
+}
+
+.no-books-text {
+  color: #666 !important;
+  margin-bottom: 24px !important;
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 48px !important;
+}
+
+.pagination .MuiPaginationItem-root {
+  border-radius: 16px !important;
+  font-weight: bold !important;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 899px) {
+  .book-list-container {
+    margin-top: 8px !important;
+    margin-bottom: 24px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .book-list-header {
+    margin-bottom: 24px !important;
+    padding-top: 24px !important;
+  }
+
+  .header-icon {
+    font-size: 48px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .header-title {
+    font-size: 1.75rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  .header-subtitle {
+    font-size: 0.9rem !important;
+    margin-bottom: 20px !important;
+    padding: 0 16px !important;
+  }
+
+  .stats-section {
+    margin-bottom: 20px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .stats-chips {
+    justify-content: center !important;
+  }
+
+  .search-filter-card {
+    margin-bottom: 24px !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .book-grid-item {
+    padding: 8px !important;
+  }
+
+  .no-books-card {
+    padding: 32px 16px !important;
+    margin: 24px 0 !important;
+    border-radius: 16px !important;
+  }
+
+  .pagination-container {
+    margin-top: 32px !important;
+  }
+
+  .pagination .MuiPaginationItem-root {
+    min-width: 32px !important;
+    height: 32px !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .book-list-container {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  .header-title {
+    font-size: 1.5rem !important;
+  }
+
+  .header-subtitle {
+    font-size: 0.8rem !important;
+    padding: 0 12px !important;
+  }
+
+  .header-icon {
+    font-size: 40px !important;
+  }
+
+  .search-filter-card {
+    padding: 12px !important;
+  }
+
+  .book-grid-item {
+    padding: 6px !important;
+  }
+
+  .books-grid-container {
+    gap: 8px !important;
+  }
+
+  .stats-chips {
+    justify-content: center !important;
+  }
+
+  .stats-chips .MuiChip-root {
+    font-size: 0.7rem !important;
+    height: 28px !important;
+  }
+}
+
+@media (max-width: 399px) {
+  .book-list-container {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+  }
+
+  .header-title {
+    font-size: 1.25rem !important;
+  }
+
+  .header-subtitle {
+    font-size: 0.75rem !important;
+    padding: 0 8px !important;
+  }
+
+  .book-grid-item {
+    padding: 4px !important;
+  }
+
+  .search-filter-card {
+    padding: 8px !important;
+  }
+}
+
+/* Tablet Responsive Styles */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .book-grid-item {
+    padding: 10px !important;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1200px) {
+  .book-list-container {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Grid Responsive Breakpoints */
+@media (max-width: 599px) {
+  .book-grid-item {
+    width: 100% !important;
+    flex-basis: 100% !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .book-grid-item {
+    width: 50% !important;
+    flex-basis: 50% !important;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .book-grid-item {
+    width: 33.333% !important;
+    flex-basis: 33.333% !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .book-grid-item {
+    width: 25% !important;
+    flex-basis: 25% !important;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+.slide-down {
+  animation: slideDown 0.8s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center !important;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.flex-center {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.wrap {
+  flex-wrap: wrap !important;
+}
+
+.gap-small {
+  gap: 8px !important;
+}
+
+.gap-medium {
+  gap: 16px !important;
+}
+
+.mb-small {
+  margin-bottom: 8px !important;
+}
+
+.mb-medium {
+  margin-bottom: 16px !important;
+}
+
+.mb-large {
+  margin-bottom: 24px !important;
+}

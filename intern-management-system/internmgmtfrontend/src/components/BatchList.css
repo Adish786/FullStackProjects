@@ -1,0 +1,962 @@
+/* BatchList.css */
+.batch-list-container {
+  padding: 0;
+  background: transparent;
+  min-height: 100vh;
+}
+
+/* Header Styles */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding: 0 8px;
+}
+
+.list-header.mobile {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-icon {
+  color: #1976d2;
+  font-size: 2.5rem !important;
+  background: #e3f2fd;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.list-header.mobile .header-icon {
+  font-size: 2rem !important;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.list-title {
+  font-weight: 700;
+  color: #1a237e;
+  margin: 0 !important;
+}
+
+.list-header.mobile .list-title {
+  font-size: 1.5rem !important;
+}
+
+.list-subtitle {
+  color: #666;
+  margin-top: 4px !important;
+}
+
+.header-stats {
+  display: flex;
+  gap: 32px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-weight: 700 !important;
+  color: #1976d2;
+  margin-bottom: 4px !important;
+}
+
+.stat-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.refresh-button {
+  align-self: flex-end;
+  color: #666;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  text-align: center;
+  background: #fafafa;
+  border: 2px dashed #e0e0e0;
+  border-radius: 16px;
+}
+
+.empty-state.mobile {
+  padding: 40px 24px;
+  border-radius: 12px;
+}
+
+.empty-icon {
+  font-size: 4rem !important;
+  color: #ccc;
+  margin-bottom: 20px !important;
+}
+
+.empty-title {
+  color: #666;
+  margin-bottom: 8px !important;
+  font-weight: 600;
+}
+
+.empty-description {
+  color: #999;
+}
+
+/* Desktop Grid Layout */
+.batches-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Batch Card - Desktop */
+.batch-card {
+  border-radius: 16px !important;
+  border: 2px solid #f0f2f5;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.batch-card:hover {
+  border-color: #1976d2;
+  box-shadow: 0 8px 32px rgba(25, 118, 210, 0.15);
+  transform: translateY(-2px);
+}
+
+.batch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.batch-header:hover {
+  background: #f8f9fa;
+}
+
+.batch-header.expanded {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.batch-basic-info {
+  flex: 1;
+}
+
+.batch-title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.batch-name {
+  font-weight: 700 !important;
+  color: #1a237e;
+  margin: 0 !important;
+}
+
+.status-chip {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.batch-dates {
+  display: flex;
+  gap: 24px;
+}
+
+.date-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-icon {
+  color: #666;
+  font-size: 1.2rem !important;
+}
+
+.date-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.batch-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-icon {
+  color: #1976d2;
+  background: #e3f2fd;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-weight: 700 !important;
+  color: #1a237e;
+  margin: 0 !important;
+  line-height: 1;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 0.75rem !important;
+}
+
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1976d2, #1a237e);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.progress-text {
+  color: #666;
+  font-weight: 500;
+  text-align: center;
+}
+
+.expand-button {
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.expand-button.expanded {
+  transform: rotate(180deg);
+}
+
+/* Batch Details - Desktop */
+.batch-details {
+  padding: 0 24px 24px 24px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.interns-title {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px !important;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f2f5;
+}
+
+.interns-table {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+}
+
+.interns-table-content {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.interns-table-content th {
+  background: #f8f9fa;
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #e0e0e0;
+  font-size: 0.875rem;
+}
+
+.interns-table-content td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.875rem;
+}
+
+.column-id { width: 140px; }
+.column-name { width: 150px; }
+.column-email { width: 200px; }
+.column-phone { width: 140px; }
+.column-card { width: 100px; }
+.column-join { width: 120px; }
+
+.intern-row:hover {
+  background: #f8f9fa;
+}
+
+.id-badge {
+  color: #1976d2;
+  margin-right: 8px;
+  font-size: 1rem !important;
+}
+
+.intern-id {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.intern-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.email-icon, .phone-icon {
+  color: #666;
+  margin-right: 8px;
+  font-size: 1rem !important;
+  vertical-align: middle;
+}
+
+.intern-email, .intern-phone {
+  color: #666;
+}
+
+.card-chip.free {
+  background: #e3f2fd !important;
+  color: #1976d2 !important;
+}
+
+.card-chip.premium {
+  background: #e8f5e8 !important;
+  color: #2e7d32 !important;
+}
+
+.join-date {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.no-interns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: #999;
+}
+
+.no-interns-icon {
+  font-size: 3rem !important;
+  margin-bottom: 16px !important;
+  opacity: 0.5;
+}
+
+.no-interns-text {
+  color: #666;
+}
+
+/* Mobile Batch Cards */
+.mobile-batches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-batch-card {
+  border-radius: 12px !important;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.mobile-batch-card:hover {
+  border-color: #1976d2;
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
+}
+
+.mobile-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.mobile-batch-info {
+  flex: 1;
+}
+
+.mobile-batch-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mobile-batch-name {
+  font-weight: 600 !important;
+  color: #1a237e;
+  margin: 0 !important;
+}
+
+.mobile-status-chip {
+  font-size: 0.7rem !important;
+}
+
+.mobile-batch-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-date-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mobile-date-row .MuiSvgIcon-root {
+  color: #666;
+  font-size: 1rem !important;
+}
+
+.mobile-date {
+  color: #666;
+  font-size: 0.75rem !important;
+}
+
+.mobile-batch-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-intern-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #e3f2fd;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+.mobile-intern-count .MuiSvgIcon-root {
+  color: #1976d2;
+  font-size: 1.2rem !important;
+}
+
+.mobile-count {
+  font-weight: 700 !important;
+  color: #1a237e;
+  margin: 0 !important;
+  line-height: 1;
+}
+
+.view-icon {
+  color: #666;
+  font-size: 1.5rem !important;
+}
+
+/* Mobile Progress */
+.mobile-progress-section {
+  margin: 12px 0;
+}
+
+.mobile-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.mobile-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1976d2, #1a237e);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.mobile-progress-text {
+  color: #666;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+}
+
+/* Mobile Interns Preview */
+.mobile-interns-preview {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.preview-label {
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 8px !important;
+  display: block;
+}
+
+.preview-interns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.preview-chip {
+  font-size: 0.7rem !important;
+}
+
+.more-chip {
+  background: #f5f5f5 !important;
+  color: #666 !important;
+  font-size: 0.7rem !important;
+}
+
+/* Batch Detail Dialog */
+.batch-detail-dialog .MuiDialog-paper {
+  border-radius: 20px;
+  margin: 16px;
+  max-height: calc(100vh - 32px);
+}
+
+.dialog-title {
+  padding: 24px 24px 16px 24px !important;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dialog-batch-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dialog-batch-name {
+  font-weight: 700 !important;
+  color: #1a237e;
+  margin: 0 !important;
+}
+
+.dialog-status-chip {
+  font-weight: 600;
+}
+
+.dialog-close {
+  color: #666;
+  transform: rotate(90deg);
+}
+
+.dialog-content {
+  padding: 0 24px 24px 24px !important;
+}
+
+/* Dialog Timeline */
+.dialog-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.timeline-icon {
+  color: #1976d2;
+  background: #e3f2fd;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 1.5rem !important;
+}
+
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-label {
+  color: #666;
+  font-weight: 500;
+  font-size: 0.8rem !important;
+}
+
+.timeline-value {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Dialog Progress */
+.dialog-progress {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progress-label {
+  color: #333;
+  font-weight: 600;
+}
+
+.progress-percent {
+  color: #1976d2;
+  font-weight: 700;
+}
+
+.dialog-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dialog-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1976d2, #1a237e);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* Dialog Interns */
+.dialog-interns {
+  margin-top: 24px;
+}
+
+.dialog-interns .interns-title {
+  margin-bottom: 16px !important;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-interns-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.mobile-intern-card {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+}
+
+.mobile-intern-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.mobile-intern-basic {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-intern-name {
+  font-weight: 600 !important;
+  color: #333;
+  margin: 0 !important;
+}
+
+.mobile-card-chip.free {
+  background: #e3f2fd !important;
+  color: #1976d2 !important;
+  font-size: 0.7rem !important;
+}
+
+.mobile-card-chip.premium {
+  background: #e8f5e8 !important;
+  color: #2e7d32 !important;
+  font-size: 0.7rem !important;
+}
+
+.mobile-intern-id {
+  color: #666;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.mobile-intern-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-detail-row .MuiSvgIcon-root {
+  color: #666;
+  font-size: 1.1rem !important;
+}
+
+.mobile-detail-value {
+  color: #666;
+  font-size: 0.875rem !important;
+}
+
+.dialog-no-interns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: #999;
+}
+
+.dialog-actions {
+  padding: 16px 24px 24px 24px !important;
+}
+
+.close-dialog-button {
+  color: #666;
+  padding: 8px 24px;
+  border-radius: 8px;
+}
+
+/* Loading and Error States */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loading-spinner {
+  color: #1976d2;
+  margin-bottom: 20px;
+}
+
+.loading-text {
+  color: #666;
+  font-weight: 500;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.error-alert {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+}
+
+.retry-button {
+  background: #1976d2;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .batch-list-container {
+    padding: 8px;
+  }
+
+  .batch-list-container.mobile {
+    padding: 4px;
+  }
+
+  .list-header {
+    margin-bottom: 24px;
+  }
+
+  .header-stats {
+    gap: 24px;
+  }
+
+  .batch-header {
+    padding: 20px;
+  }
+
+  .batch-dates {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .batch-stats {
+    gap: 16px;
+  }
+
+  .progress-section {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .batch-list-container.mobile {
+    padding: 0;
+  }
+
+  .list-header.mobile {
+    margin-bottom: 20px;
+  }
+
+  .header-content {
+    gap: 12px;
+  }
+
+  .header-icon {
+    font-size: 1.8rem !important;
+  }
+
+  .list-title {
+    font-size: 1.3rem !important;
+  }
+
+  .mobile-batch-card {
+    padding: 12px;
+  }
+
+  .mobile-card-header {
+    margin-bottom: 8px;
+  }
+
+  .mobile-intern-count {
+    padding: 4px 8px;
+  }
+
+  .batch-detail-dialog .MuiDialog-paper {
+    margin: 8px;
+    border-radius: 16px;
+  }
+
+  .dialog-title {
+    padding: 20px 20px 12px 20px !important;
+  }
+
+  .dialog-content {
+    padding: 0 20px 20px 20px !important;
+  }
+
+  .dialog-timeline {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .timeline-item {
+    gap: 12px;
+  }
+
+  .dialog-progress {
+    padding: 12px;
+  }
+
+  .mobile-intern-card {
+    padding: 12px;
+  }
+}
+
+/* Scrollbar Styling */
+.mobile-interns-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mobile-interns-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.mobile-interns-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.mobile-interns-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.interns-table::-webkit-scrollbar {
+  height: 6px;
+}
+
+.interns-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.interns-table::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.interns-table::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

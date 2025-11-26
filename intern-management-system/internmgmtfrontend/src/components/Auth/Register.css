@@ -1,0 +1,299 @@
+/* Register.css */
+.register-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.register-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.register-paper {
+  padding: 48px 40px;
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 500px;
+  animation: slideUp 0.6s ease-out;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.logo-icon {
+  font-size: 2.5rem !important;
+  color: #1976d2;
+  background: #e3f2fd;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.logo-text {
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #1976d2, #1a237e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.register-title {
+  font-weight: 600 !important;
+  color: #1a237e;
+  margin-bottom: 8px !important;
+}
+
+.register-subtitle {
+  color: #666;
+  font-weight: 400 !important;
+}
+
+.register-stepper {
+  margin-bottom: 32px;
+}
+
+.error-alert,
+.success-alert {
+  margin-bottom: 24px;
+  border-radius: 12px;
+  border: 1px solid;
+}
+
+.register-form {
+  margin-bottom: 32px;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 200px;
+}
+
+.step-title {
+  font-weight: 600 !important;
+  color: #333;
+  margin-bottom: 16px !important;
+  text-align: center;
+}
+
+.form-field {
+  margin-bottom: 16px !important;
+}
+
+.form-field .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.form-field .MuiOutlinedInput-root:hover {
+  background: #ffffff;
+  border-color: #1976d2;
+}
+
+.form-field .MuiOutlinedInput-root.Mui-focused {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.input-icon {
+  color: #666;
+}
+
+.password-toggle {
+  color: #666 !important;
+}
+
+.review-section {
+  background: #f8f9fa;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.review-value {
+  color: #333;
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.action-spacer {
+  flex: 1;
+}
+
+.back-button {
+  color: #666 !important;
+  padding: 10px 24px !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+}
+
+.next-button,
+.register-button {
+  background: linear-gradient(135deg, #1976d2, #1a237e) !important;
+  color: white !important;
+  padding: 12px 32px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.next-button:hover,
+.register-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(25, 118, 210, 0.3) !important;
+}
+
+.register-button:disabled {
+  opacity: 0.7;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.register-footer {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.footer-text {
+  color: #666;
+}
+
+.footer-link {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #1a237e;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .register-container {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 60px;
+  }
+
+  .register-paper {
+    padding: 32px 24px;
+    border-radius: 20px !important;
+  }
+
+  .logo-icon {
+    font-size: 2rem !important;
+    padding: 10px;
+  }
+
+  .logo-text {
+    font-size: 1.8rem !important;
+  }
+
+  .register-title {
+    font-size: 1.4rem !important;
+  }
+
+  .step-content {
+    min-height: 150px;
+  }
+
+  .review-section {
+    padding: 16px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .back-button,
+  .next-button,
+  .register-button {
+    width: 100%;
+  }
+
+  .action-spacer {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 12px;
+    padding-top: 40px;
+  }
+
+  .register-paper {
+    padding: 24px 20px;
+    border-radius: 16px !important;
+  }
+
+  .logo-section {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .logo-text {
+    font-size: 1.5rem !important;
+  }
+
+  .register-title {
+    font-size: 1.3rem !important;
+  }
+
+  .register-stepper .MuiStepLabel-root {
+    padding: 0 4px;
+  }
+
+  .register-stepper .MuiStepLabel-label {
+    font-size: 0.7rem;
+  }
+}
