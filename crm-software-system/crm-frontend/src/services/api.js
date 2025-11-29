@@ -218,84 +218,84 @@ export const userAPI = {
 // Customer API - Enhanced with permission checks
 export const customerAPI = {
   getAll: (params = {}) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to access customers'));
     }
     return api.get('/customers', { params });
   },
   
   getById: (id) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to access customers'));
     }
     return api.get(`/customers/${id}`);
   },
   
   create: (data) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to create customers'));
     }
     return api.post('/customers', data);
   },
   
   update: (id, data) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to update customers'));
     }
     return api.put(`/customers/${id}`, data);
   },
   
   delete: (id) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to delete customers'));
     }
     return api.delete(`/customers/${id}`);
   },
   
   getByStatus: (status) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to access customers'));
     }
     return api.get(`/customers/status/${status}`);
   },
   
   getBySalesRep: (salesRepId) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to access customers'));
     }
     return api.get(`/customers/sales-rep/${salesRepId}`);
   },
   
   getStatistics: () => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to access customer statistics'));
     }
     return api.get('/customers/statistics');
   },
   
   search: (query) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to search customers'));
     }
     return api.get('/customers/search', { params: { q: query } });
   },
   
   bulkAssign: (customerIds, salesRepId) => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to bulk assign customers'));
     }
     return api.post('/customers/bulk-assign', { customerIds, salesRepId });
   },
   
   getUnassigned: () => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to access customers'));
     }
     return api.get('/customers/unassigned');
   },
   
   getAssigned: () => {
-    if (!canAccess('/api/customers')) {
+    if (canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to access customers'));
     }
     return api.get('/customers/assigned');
@@ -305,77 +305,77 @@ export const customerAPI = {
 // Lead API with permission checks
 export const leadAPI = {
   getAll: () => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to access leads'));
     }
     return api.get('/leads');
   },
   
   getById: (id) => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to access leads'));
     }
     return api.get(`/leads/${id}`);
   },
   
   create: (data) => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to create leads'));
     }
     return api.post('/leads', data);
   },
   
   update: (id, data) => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to update leads'));
     }
     return api.put(`/leads/${id}`, data);
   },
   
   delete: (id) => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to delete leads'));
     }
     return api.delete(`/leads/${id}`);
   },
   
   updateStatus: (id, status) => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to update leads'));
     }
     return api.patch(`/leads/${id}/status`, { status });
   },
   
   getByStatus: (status) => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to access leads'));
     }
     return api.get(`/leads/status/${status}`);
   },
   
   getStatistics: () => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to access lead statistics'));
     }
     return api.get('/leads/statistics');
   },
   
   convertToCustomer: (id) => {
-    if (!canAccess('/api/leads') || !canAccess('/api/customers')) {
+    if (canAccess('/api/leads') || !canAccess('/api/customers')) {
       return Promise.reject(new Error('No permission to convert leads to customers'));
     }
     return api.post(`/leads/${id}/convert`);
   },
   
   getBySalesRep: (salesRepId) => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to access leads'));
     }
     return api.get(`/leads/sales-rep/${salesRepId}`);
   },
   
   getNeedingFollowUp: () => {
-    if (!canAccess('/api/leads')) {
+    if (canAccess('/api/leads')) {
       return Promise.reject(new Error('No permission to access leads'));
     }
     return api.get('/leads/needing-followup');
@@ -385,35 +385,35 @@ export const leadAPI = {
 // Task API with permission checks
 export const taskAPI = {
   getAll: (params = {}) => {
-    if (!canAccess('/api/tasks')) {
+    if (canAccess('/api/tasks')) {
       return Promise.reject(new Error('No permission to access tasks'));
     }
     return api.get('/tasks', { params });
   },
   
   getById: (id) => {
-    if (!canAccess('/api/tasks')) {
+    if (canAccess('/api/tasks')) {
       return Promise.reject(new Error('No permission to access tasks'));
     }
     return api.get(`/tasks/${id}`);
   },
   
   create: (data) => {
-    if (!canAccess('/api/tasks')) {
+    if (canAccess('/api/tasks')) {
       return Promise.reject(new Error('No permission to create tasks'));
     }
     return api.post('/tasks', data);
   },
   
   update: (id, data) => {
-    if (!canAccess('/api/tasks')) {
+    if (canAccess('/api/tasks')) {
       return Promise.reject(new Error('No permission to update tasks'));
     }
     return api.put(`/tasks/${id}`, data);
   },
   
   delete: (id) => {
-    if (!canAccess('/api/tasks')) {
+    if (canAccess('/api/tasks')) {
       return Promise.reject(new Error('No permission to delete tasks'));
     }
     return api.delete(`/tasks/${id}`);
@@ -425,35 +425,35 @@ export const taskAPI = {
 // Sale API with permission checks
 export const saleAPI = {
   getAll: (params = {}) => {
-    if (!canAccess('/api/sales')) {
+    if (canAccess('/api/sales')) {
       return Promise.reject(new Error('No permission to access sales'));
     }
     return api.get('/sales', { params });
   },
   
   getById: (id) => {
-    if (!canAccess('/api/sales')) {
+    if (canAccess('/api/sales')) {
       return Promise.reject(new Error('No permission to access sales'));
     }
     return api.get(`/sales/${id}`);
   },
   
   create: (data) => {
-    if (!canAccess('/api/sales')) {
+    if (canAccess('/api/sales')) {
       return Promise.reject(new Error('No permission to create sales'));
     }
     return api.post('/sales', data);
   },
   
   update: (id, data) => {
-    if (!canAccess('/api/sales')) {
+    if (canAccess('/api/sales')) {
       return Promise.reject(new Error('No permission to update sales'));
     }
     return api.put(`/sales/${id}`, data);
   },
   
   delete: (id) => {
-    if (!canAccess('/api/sales')) {
+    if (canAccess('/api/sales')) {
       return Promise.reject(new Error('No permission to delete sales'));
     }
     return api.delete(`/sales/${id}`);
