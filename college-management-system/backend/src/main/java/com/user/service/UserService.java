@@ -1,6 +1,6 @@
 package com.user.service;
 
-import com.user.config.PasswordEncoderConfig;
+import com.user.security.PasswordEncoderConfig;
 import com.user.entity.User;
 import com.user.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

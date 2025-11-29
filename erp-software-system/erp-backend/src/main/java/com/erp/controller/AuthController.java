@@ -5,8 +5,13 @@ import com.erp.dto.LoginRequest;
 import com.erp.dto.RegisterRequest;
 import com.erp.entity.User;
 import com.erp.enums.Role;
+import com.erp.repository.UserRepository;
 import com.erp.security.JwtUtil;
 import com.erp.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +27,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:3000")
+@Tag(name = "Authentication Controller", description = "Handles user authentication and registration APIs")
 public class AuthController {
 
     @Autowired
@@ -36,28 +42,40 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Operation(
+            summary = "Login User",
+            description = "Authenticates a user and returns JWT token with role"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Login Successful"),
+            @ApiResponse(responseCode = "400", description = "Invalid Credentials")
+    })
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         try {
             System.out.println("Login attempt for user: " + loginRequest.getUsername());
 
-            // Check if user exists first
             Optional<User> userOptional = userService.getUserByUsername(loginRequest.getUsername());
             if (userOptional.isEmpty()) {
-                System.out.println("User not found: " + loginRequest.getUsername());
                 return ResponseEntity.badRequest().body("User not found");
             }
 
             User user = userOptional.get();
-            System.out.println("Stored password hash: " + user.getPassword());
-            System.out.println("Input password: " + loginRequest.getPassword());
+            boolean passwordMatches = passwordEncoder.matches(
+                    loginRequest.getPassword(),
+                    user.getPassword()
+            );
 
-            // Manually check password for debugging
-            boolean passwordMatches = passwordEncoder.matches(loginRequest.getPassword(), user.getPassword());
             System.out.println("Password matches: " + passwordMatches);
 
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getUsername(),
+                            loginRequest.getPassword()
+                    )
             );
 
             final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getUsername());
@@ -65,27 +83,34 @@ public class AuthController {
 
             Map<String, String> response = new HashMap<>();
             response.put("token", jwt);
-            response.put("role", ((User) userDetails).getRole().name());
+            response.put("role", user.getRole().name());
 
-            System.out.println("Login successful for user: " + loginRequest.getUsername());
             return ResponseEntity.ok(response);
+
         } catch (Exception e) {
-            System.out.println("Login failed for user: " + loginRequest.getUsername() + " - " + e.getMessage());
-            e.printStackTrace(); // Add stack trace for more details
+            e.printStackTrace();
             return ResponseEntity.badRequest().body("Invalid credentials: " + e.getMessage());
         }
     }
 
+
+    @Operation(
+            summary = "Register User",
+            description = "Registers a new user with role, email and password"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "User Registered"),
+            @ApiResponse(responseCode = "400", description = "Validation Failed")
+    })
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) {
-        try {
-            System.out.println("Registration attempt for: " + registerRequest.getUsername());
 
-            if (userService.existsByUsername(registerRequest.getUsername())) {
+        try {
+            if (userRepository.existsByUsername(registerRequest.getUsername())) {
                 return ResponseEntity.badRequest().body("Username already exists");
             }
 
-            if (userService.existsByEmail(registerRequest.getEmail())) {
+            if (userRepository.existsByEmail(registerRequest.getEmail())) {
                 return ResponseEntity.badRequest().body("Email already exists");
             }
 
@@ -97,10 +122,9 @@ public class AuthController {
 
             userService.saveUser(user);
 
-            System.out.println("Registration successful for: " + registerRequest.getUsername());
             return ResponseEntity.ok("User registered successfully");
+
         } catch (Exception e) {
-            System.out.println("Registration failed: " + e.getMessage());
             return ResponseEntity.badRequest().body("Registration failed: " + e.getMessage());
         }
     }

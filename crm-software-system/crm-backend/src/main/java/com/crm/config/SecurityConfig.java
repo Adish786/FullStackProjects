@@ -28,24 +28,37 @@ public class SecurityConfig {
         this.jwtFilter = jwtFilter;
     }
 
+/*
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> {})  // enable CORS
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // PUBLIC ENDPOINTS - No auth required
                         .requestMatchers(
-                                "/api/register",
-                                "/api/*",
                                 "/api/login",
+                                "/api/register",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
                                 "/swagger-resources/**",
                                 "/configuration/**"
                         ).permitAll()
+
+                        // PROTECTED ENDPOINTS - Match the roles from your JWT
+                        .requestMatchers("/api/users/**").hasAnyRole("ADMIN") // or "ROLE_ADMIN"
+                        .requestMatchers("/api/sales/**").hasAnyRole("ADMIN", "MANAGER", "SALES")
+                        .requestMatchers("/api/tasks/**").hasAnyRole("ADMIN", "MANAGER", "SALES", "USER")
+                        .requestMatchers("/api/leads/**").hasAnyRole("ADMIN", "MANAGER", "SALES")
+                        .requestMatchers("/api/customers/**").hasAnyRole("ADMIN", "MANAGER", "SALES")
+                        .requestMatchers("/api/dashboard/**").hasAnyRole("ADMIN", "MANAGER", "SALES", "USER")
+
+                        // All other API endpoints require authentication
+                        .requestMatchers("/api/**").authenticated()
+
                         .anyRequest().authenticated()
                 );
 
@@ -53,6 +66,18 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+ */
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+            .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .sessionManagement(session ->
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+    return http.build();
+}
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

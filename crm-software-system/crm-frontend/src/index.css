@@ -66,3 +66,57 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+/* Customer Styles */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Smooth transitions */
+.modal-content {
+  transition: all 0.3s ease;
+}
+
+/* Responsive table adjustments */
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+  
+  .btn-group .btn {
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* Hover effects */
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.04);
+}
+
+/* Custom badge styles */
+.badge-customer {
+  font-size: 0.7em;
+}
+
+/* Loading animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card, .table-responsive {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Mobile optimizations */
+@media (max-width: 576px) {
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .modal-dialog {
+    margin: 10px;
+  }
+}

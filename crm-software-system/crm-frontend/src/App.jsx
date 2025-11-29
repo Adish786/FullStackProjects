@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useLocation, Link } from 'react-router-dom'; // Add Link import
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
@@ -56,13 +56,13 @@ function App() {
 
   return (
     <div className="App">
-      {/* Navigation Header */}
+      {/* Navigation Header - FIXED WITH LINK COMPONENTS */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div className="container">
-          <span className="navbar-brand fw-bold">
+          <Link className="navbar-brand fw-bold" to="/">
             <i className="fas fa-chart-line me-2"></i>
             CRM System
-          </span>
+          </Link>
           
           <button 
             className="navbar-toggler" 
@@ -76,34 +76,49 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <a className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} href="/">
+                <Link 
+                  className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} 
+                  to="/"
+                >
                   <i className="fas fa-tachometer-alt me-1"></i>
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className={`nav-link ${location.pathname === '/customers' ? 'active' : ''}`} href="/customers">
+                <Link 
+                  className={`nav-link ${location.pathname === '/customers' ? 'active' : ''}`} 
+                  to="/customers"
+                >
                   <i className="fas fa-users me-1"></i>
                   Customers
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className={`nav-link ${location.pathname === '/leads' ? 'active' : ''}`} href="/leads">
+                <Link 
+                  className={`nav-link ${location.pathname === '/leads' ? 'active' : ''}`} 
+                  to="/leads"
+                >
                   <i className="fas fa-bullseye me-1"></i>
                   Leads
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className={`nav-link ${location.pathname === '/tasks' ? 'active' : ''}`} href="/tasks">
+                <Link 
+                  className={`nav-link ${location.pathname === '/tasks' ? 'active' : ''}`} 
+                  to="/tasks"
+                >
                   <i className="fas fa-tasks me-1"></i>
                   Tasks
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className={`nav-link ${location.pathname === '/sales' ? 'active' : ''}`} href="/sales">
+                <Link 
+                  className={`nav-link ${location.pathname === '/sales' ? 'active' : ''}`} 
+                  to="/sales"
+                >
                   <i className="fas fa-chart-line me-1"></i>
                   Sales
-                </a>
+                </Link>
               </li>
             </ul>
 

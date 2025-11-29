@@ -1,32 +1,55 @@
 package com.crm.service;
 
 import com.crm.model.User;
-import com.crm.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
+import com.crm.dto.UserCreateRequest;
+import com.crm.dto.UserUpdateRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Async;
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    @Async
+    CompletableFuture<Page<User>> findAllUsers(Pageable pageable, String role, String email);
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    @Async
+    CompletableFuture<Optional<User>> findById(Long id);
 
-    public User registerUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
+    @Async
+    CompletableFuture<Optional<User>> findByEmail(String email); // Fixed: returns Optional<User>
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+    @Async
+    CompletableFuture<User> createUser(UserCreateRequest request);
 
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
+    @Async
+    CompletableFuture<User> updateUser(Long id, UserUpdateRequest request);
+
+    @Async
+    CompletableFuture<User> updateUserRole(Long id, String role);
+
+    @Async
+    CompletableFuture<Void> deleteUser(Long id);
+
+    @Async
+    CompletableFuture<List<User>> findByRole(String role);
+    @Async
+    CompletableFuture<Boolean> existsByEmail(String email);
+
+    @Async
+    CompletableFuture<Object> getUserStatistics();
+
+    @Async
+    CompletableFuture<List<User>> findSalesRepresentatives();
+
+    @Async
+    CompletableFuture<Long> countByRole(String role);
+
+    // Add this method for AuthController compatibility
+    @Async
+    CompletableFuture<User> getUserByEmail(String email);
+
+    CompletableFuture<User> registerUser(User user);
 }

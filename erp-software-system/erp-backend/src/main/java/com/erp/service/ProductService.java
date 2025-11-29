@@ -1,57 +1,27 @@
 package com.erp.service;
 
-
 import com.erp.entity.Product;
-import com.erp.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class ProductService {
+public interface ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    List<Product> getAllProducts();
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
+    Product getProductById(Long id);
 
-    public Optional<Product> getProductById(Long id) {
-        return productRepository.findById(id);
-    }
+    Product createProduct(Product product);
 
-    public Product createProduct(Product product) {
-        if (productRepository.existsBySku(product.getSku())) {
-            throw new RuntimeException("SKU already exists: " + product.getSku());
-        }
-        return productRepository.save(product);
-    }
+    Product updateProduct(Long id, Product product);
 
-    public Product updateProduct(Long id, Product productDetails) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+    void deleteProduct(Long id);
 
-        product.setName(productDetails.getName());
-        product.setCategory(productDetails.getCategory());
-        product.setUnitPrice(productDetails.getUnitPrice());
-        product.setCurrentStock(productDetails.getCurrentStock());
-        product.setReorderLevel(productDetails.getReorderLevel());
+    List<Product> getProductsByCategory(String category);
 
-        return productRepository.save(product);
-    }
+    List<Product> searchProducts(String searchTerm);
 
-    public void deleteProduct(Long id) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
-        productRepository.delete(product);
-    }
+    List<Product> getLowStockProducts();
 
-    public List<Product> getLowStockProducts() {
-        return productRepository.findAll().stream()
-                .filter(p -> p.getCurrentStock() <= p.getReorderLevel())
-                .toList();
-    }
+    boolean existsBySku(String sku);
+
+    boolean existsBySkuAndIdNot(String sku, Long id);
 }

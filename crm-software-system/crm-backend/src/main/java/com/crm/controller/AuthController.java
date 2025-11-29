@@ -20,6 +20,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -37,70 +40,85 @@ public class AuthController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
-        if (userService.existsByEmail(request.getEmail())) {
-            return ResponseEntity.badRequest().body("Email already exists");
-        }
+    public CompletableFuture<ResponseEntity<?>> register(@RequestBody RegisterRequest request) {
+        return userService.existsByEmail(request.getEmail())
+                .thenCompose(emailExists -> {
+                    if (emailExists) {
+                        return CompletableFuture.completedFuture(
+                                ResponseEntity.badRequest().body("Email already exists")
+                        );
+                    }
 
-        User user = new User(
-                request.getFullName(),
-                request.getEmail(),
-                request.getPassword(),
-                Role.valueOf(request.getRole().toUpperCase())
-        );
+                    try {
+                        // Create user directly in the service layer
+                        User user = new User(
+                                request.getFullName(),
+                                request.getEmail(),
+                                request.getPassword(),
+                                Role.valueOf(request.getRole().toUpperCase())
+                        );
 
-        userService.registerUser(user);
-        return ResponseEntity.ok("User registered successfully");
+                        CompletableFuture<User> registrationFuture = userService.registerUser(user);
+
+                        return registrationFuture.thenApply(savedUser -> {
+                            return ResponseEntity.ok("User registered successfully");
+                        });
+
+                    } catch (IllegalArgumentException e) {
+                        return CompletableFuture.completedFuture(
+                                ResponseEntity.badRequest().body("Invalid role: " + request.getRole())
+                        );
+                    } catch (Exception e) {
+                        return CompletableFuture.completedFuture(
+                                ResponseEntity.badRequest().body("Registration failed: " + e.getMessage())
+                        );
+                    }
+                });
     }
-/*
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest authRequest) {
         try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+            // Authenticate user
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            authRequest.getEmail(),
+                            authRequest.getPassword()
+                    )
             );
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            User user = userService.findByEmail(request.getEmail()).orElseThrow();
-            String jwt = jwtUtil.generateToken(request.getEmail());
-
-            return ResponseEntity.ok(new LoginResponse(jwt, user.getEmail(), user.getRole().name()));
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(401).body("Invalid email or password");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Invalid credentials");
+            return ResponseEntity.status(500).body("Authentication failed: " + e.getMessage());
+        }
+
+        // Load user details and generate token
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getEmail());
+        final String jwt = jwtUtil.generateToken(userDetails);
+
+        // Get user role - use join() to get the result from CompletableFuture
+        try {
+            Optional<User> userOptional = userService.findByEmail(authRequest.getEmail()).join();
+            if (userOptional.isPresent()) {
+                User user = userOptional.get();
+                return ResponseEntity.ok(new LoginResponse(jwt, user.getEmail(), user.getRole().toString()));
+            } else {
+                return ResponseEntity.status(404).body("User not found");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error retrieving user: " + e.getMessage());
         }
     }
-
- */
-@PostMapping("/login")
-public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest authRequest) {
-    try {
-        // Authenticate user
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authRequest.getEmail(),
-                        authRequest.getPassword()
-                )
-        );
-    } catch (BadCredentialsException e) {
-        return ResponseEntity.status(401).body("Invalid email or password");
-    } catch (Exception e) {
-        return ResponseEntity.status(500).body("Authentication failed");
-    }
-
-    // Load user details and generate token
-    final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getEmail());
-    final String jwt = jwtUtil.generateToken(userDetails);
-
-    // Get user role
-    User user = userService.findByEmail(authRequest.getEmail())
-            .orElseThrow(() -> new RuntimeException("User not found"));
-
-    return ResponseEntity.ok(new LoginResponse(jwt, user.getEmail(), user.getRole().toString()));
-}
     @GetMapping("/users/me")
     public ResponseEntity<?> getCurrentUser(Authentication authentication) {
-        User user = userService.findByEmail(authentication.getName()).orElseThrow();
-        return ResponseEntity.ok(user);
+        try {
+            Optional<User> userOptional = userService.findByEmail(authentication.getName()).join();
+            if (userOptional.isPresent()) {
+                return ResponseEntity.ok(userOptional.get());
+            } else {
+                return ResponseEntity.status(404).body("User not found");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error retrieving user: " + e.getMessage());
+        }
     }
 }

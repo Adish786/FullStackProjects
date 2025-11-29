@@ -4,7 +4,7 @@ package com.erp.service;
 import com.erp.dto.UpdateUserRequest;
 import com.erp.entity.User;
 import com.erp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,14 +19,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
+    /**
+     * Thread-safe user lookup by username
+     */
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
@@ -43,82 +49,75 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
-    }
+    /**
+     * ✅ Thread-safe and transactional update
+     */
+    @Transactional
+    public synchronized User updateUser(Long id, UpdateUserRequest request) {
 
-    public boolean existsByUsername(String username) {
-        return userRepository.existsByUsername(username);
-    }
-
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
-
-    public User updateUser(Long id, UpdateUserRequest updateRequest) {
-        User user = userRepository.findById(id)
+        User user = userRepository.findByIdForUpdate(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
-        // Check if username is being changed and if it's available
-        if (!user.getUsername().equals(updateRequest.getUsername()) &&
-                userRepository.existsByUsername(updateRequest.getUsername())) {
+        // Prevent race condition on username change
+        if (!user.getUsername().equals(request.getUsername()) &&
+                userRepository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
 
-        // Check if email is being changed and if it's available
-        if (!user.getEmail().equals(updateRequest.getEmail()) &&
-                userRepository.existsByEmail(updateRequest.getEmail())) {
+        if (!user.getEmail().equals(request.getEmail()) &&
+                userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
 
-        user.setUsername(updateRequest.getUsername());
-        user.setEmail(updateRequest.getEmail());
+        user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
 
-        // Update password if provided
-        if (updateRequest.getNewPassword() != null && !updateRequest.getNewPassword().trim().isEmpty()) {
-            if (updateRequest.getCurrentPassword() == null) {
-                throw new RuntimeException("Current password is required to set new password");
+        if (request.getNewPassword() != null && !request.getNewPassword().isBlank()) {
+            if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
+                throw new RuntimeException("Current password incorrect");
             }
-            if (!passwordEncoder.matches(updateRequest.getCurrentPassword(), user.getPassword())) {
-                throw new RuntimeException("Current password is incorrect");
-            }
-            user.setPassword(passwordEncoder.encode(updateRequest.getNewPassword()));
+            user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         }
 
         return userRepository.save(user);
     }
 
-    public User updateUserRole(Long id, String role) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+    /**
+     * ✅ Thread-safe role update
+     */
+    @Transactional
+    public synchronized User updateUserRole(Long id, String role) {
+        User user = userRepository.findByIdForUpdate(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        try {
-            user.setRole(Role.valueOf(role));
-            return userRepository.save(user);
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Invalid role: " + role);
-        }
+        user.setRole(Role.valueOf(role));
+        return userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+    /**
+     * ✅ Thread-safe delete with self-delete prevention
+     */
+    @Transactional
+    public synchronized void deleteUser(Long id) {
 
-        // Prevent user from deleting themselves
-        String currentUsername = getCurrentUsername();
-        if (user.getUsername().equals(currentUsername)) {
+        User user = userRepository.findByIdForUpdate(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        String currentUser = getCurrentUsername();
+
+        if (user.getUsername().equals(currentUser)) {
             throw new RuntimeException("Cannot delete your own account");
         }
 
         userRepository.delete(user);
     }
 
-    // Helper method to get current username from security context
     private String getCurrentUsername() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            return authentication.getName();
-        }
-        return null;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth != null ? auth.getName() : null;
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 }
