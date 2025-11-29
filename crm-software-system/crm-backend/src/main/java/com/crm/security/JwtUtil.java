@@ -3,6 +3,7 @@ package com.crm.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.util.Date;
@@ -24,15 +25,9 @@ public class JwtUtil {
     private Long expiration;
 
     private SecretKey getSigningKey() {
-        // Ensure the secret is long enough, pad if necessary
-        String secureSecret = secret;
-        if (secret.length() < 64) {
-            // Pad the secret to make it at least 64 characters
-            secureSecret = String.format("%-64s", secret).replace(' ', '0');
-        }
-        return Keys.hmacShaKeyFor(secureSecret.getBytes());
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
-
     // Method names that match your JwtFilter
     public String getEmailFromToken(String token) {
         return extractClaim(token, Claims::getSubject);
