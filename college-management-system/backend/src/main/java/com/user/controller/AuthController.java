@@ -1,7 +1,7 @@
 package com.user.controller;
 
+import com.user.dto.LoginRequest;
 import com.user.security.JwtUtil;
-import com.user.entity.LoginRequest;
 import com.user.entity.User;
 import com.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

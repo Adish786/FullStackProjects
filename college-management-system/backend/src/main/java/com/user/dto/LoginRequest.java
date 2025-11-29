@@ -1,4 +1,4 @@
-package com.user.entity;
+package com.user.dto;
 
 public class LoginRequest {
     private String email;
@@ -10,4 +10,3 @@ public class LoginRequest {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 }
-

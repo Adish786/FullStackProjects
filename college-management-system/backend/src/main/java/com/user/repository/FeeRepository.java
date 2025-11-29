@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface FeeRepository extends JpaRepository<Fee, Long> {
-    Optional<Fee> findByStudentId(Long studentId);
+   // Optional<Fee> findByStudentId(Long studentId);
     List<Fee> findByStudentId(Long studentId);
     List<Fee> findByPaymentStatus(PaymentStatus paymentStatus);
 
