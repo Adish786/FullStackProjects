@@ -50,16 +50,32 @@ public class Sale {
     @Schema(description = "Sales representative assigned to this sale")
     private User assignedSalesRep;
 
+    @Column(name = "created_by", nullable = false, updatable = false)
+    @Schema(description = "User ID who created the sale", example = "101")
+    private Long createdBy;
+
+    @Column(length = 1000)
+    @Schema(description = "Optional notes about the sale", example = "Followed up with customer")
+    private String notes;
+
+    public String getNotes() { return notes; }
+    public void setNotes(String notes) { this.notes = notes; }
+
     // Constructors
     public Sale() {}
 
-    public Sale(Customer customer, Double amount, SaleStatus status, LocalDate date, User assignedSalesRep) {
+    public Sale(Long id, Customer customer, Double amount, SaleStatus status, LocalDate date,
+                User assignedSalesRep, Long createdBy, String notes) {
+        this.id = id;
         this.customer = customer;
         this.amount = amount;
         this.status = status;
         this.date = date;
         this.assignedSalesRep = assignedSalesRep;
+        this.createdBy = createdBy;
+        this.notes = notes;
     }
+
 
     // Getters and Setters with Schema annotations
     @Schema(description = "Unique identifier of the sale", example = "1", accessMode = Schema.AccessMode.READ_ONLY)
@@ -99,6 +115,14 @@ public class Sale {
     @Schema(description = "Sales representative assigned to this sale")
     public User getAssignedSalesRep() { return assignedSalesRep; }
     public void setAssignedSalesRep(User assignedSalesRep) { this.assignedSalesRep = assignedSalesRep; }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
 
     @Override
     public String toString() {

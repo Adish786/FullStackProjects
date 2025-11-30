@@ -28,16 +28,17 @@ import java.util.concurrent.CompletableFuture;
 @CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailsService userDetailsService;
+    private final UserService userService;
+    private final JwtUtil jwtUtil;
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private JwtUtil jwtUtil;
+    public AuthController(AuthenticationManager authenticationManager,UserDetailsService userDetailsService,UserService userService,JwtUtil jwtUtil) {
+        this.authenticationManager=authenticationManager;
+        this.userDetailsService=userDetailsService;
+        this.userService=userService;
+        this.jwtUtil=jwtUtil;
+    }
 
     @PostMapping("/register")
     public CompletableFuture<ResponseEntity<?>> register(@RequestBody RegisterRequest request) {

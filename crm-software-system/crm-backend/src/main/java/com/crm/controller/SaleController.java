@@ -1,10 +1,14 @@
 package com.crm.controller;
 
-
+import com.crm.exceptionhandler.ResourceNotFoundException;
 import com.crm.model.Sale;
+import com.crm.model.User;
 import com.crm.service.SaleService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -21,36 +25,47 @@ public class SaleController {
     }
 
     @PostMapping
-    public CompletableFuture<ResponseEntity<Sale>> createSale(@RequestBody Sale sale) {
-        return saleService.createSale(sale)
+    @PreAuthorize("isAuthenticated()")
+    public CompletableFuture<ResponseEntity<Sale>> createSale(
+            @RequestBody @Valid Sale sale,
+            @AuthenticationPrincipal User user) {
+        return saleService.createSale(sale, user)
                 .thenApply(ResponseEntity::ok);
     }
 
     @GetMapping
-    public CompletableFuture<ResponseEntity<List<Sale>>> getAllSales() {
-        return saleService.getAllSales()
+    public CompletableFuture<ResponseEntity<List<Sale>>> getAllSales(
+            @AuthenticationPrincipal User user) {
+
+        return saleService.getAllSales(user)
                 .thenApply(ResponseEntity::ok);
     }
 
     @GetMapping("/{id}")
-    public CompletableFuture<ResponseEntity<Sale>> getSaleById(@PathVariable Long id) {
-        return saleService.getSaleById(id)
+    public CompletableFuture<ResponseEntity<Sale>> getSaleById(
+            @PathVariable Long id,
+            @AuthenticationPrincipal User user) throws ResourceNotFoundException {
+
+        return saleService.getSaleById(id, user)
                 .thenApply(ResponseEntity::ok);
     }
 
     @PutMapping("/{id}")
     public CompletableFuture<ResponseEntity<Sale>> updateSale(
             @PathVariable Long id,
-            @RequestBody Sale sale) {
+            @RequestBody @Valid Sale sale,
+            @AuthenticationPrincipal User user) {
 
-        return saleService.updateSale(id, sale)
+        return saleService.updateSale(id, sale, user)
                 .thenApply(ResponseEntity::ok);
     }
 
     @DeleteMapping("/{id}")
-    public CompletableFuture<ResponseEntity<String>> deleteSale(@PathVariable Long id) {
-        return saleService.deleteSale(id)
+    public CompletableFuture<ResponseEntity<String>> deleteSale(
+            @PathVariable Long id,
+            @AuthenticationPrincipal User user) {
+
+        return saleService.deleteSale(id, user)
                 .thenApply(v -> ResponseEntity.ok("Sale deleted successfully"));
     }
 }
-
